@@ -4,6 +4,7 @@ import os
 import warnings
 import logging
 import re
+from pathlib import Path
 
 
 # disable warnings from openpyxl
@@ -30,7 +31,8 @@ for filename in glob.glob('*.xlsx'):
     wb.close()
 
     # move file to new location
-    os.makedirs(inn, exist_ok=True)
-    os.rename(filename, f"{inn}/{filename}")
+    dir = Path(inn)
+    os.makedirs(dir, exist_ok=True)
+    os.rename(filename, dir / filename)
 
 
